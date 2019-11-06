@@ -50,14 +50,13 @@
 
               showVideoTitle(videoCommand);
 
-              if (videoCommand === "kick boxing") {
+              if (videoCommand.includes("kick boxing")) {
                 playKickBoxingVid();
-              }
-              if (videoCommand === "balance yoga") {
+              } else if (videoCommand.includes("balance yoga")) {
                 playKickBoxingVid();
-              }
-              if (videoCommand === "play")
+              } else if (videoCommand.includes("undefined")) {
                 playVid();
+              }
               if (videoCommand === "pause" || videoCommand === "paws")
                 pauseVid();
               if (videoCommand === "restart")
