@@ -1,7 +1,7 @@
 <head>
     <link rel="stylesheet" href="default.css" >
     <body>
-      <!-- <a href = "#" onclick="showGridView()">back to grid</a> 
+      <!-- <a href = "#" onclick="showGridView()">back to grid</a>
       <p/>
       <div id = "image_container">
         <div id = "grid_view">
@@ -19,11 +19,11 @@
           </div>
         </div>
       </div> -->
-  
-      <div id = "displayMovie"> 
+
+      <div id = "displayMovie">
         <p></p>
       </div>
-  
+
       <script>
         function showVideoTitle(title) {
           document.getElementById('displayMovie').textContent = title;
@@ -34,20 +34,20 @@
           xhttp.open("GET", "https://qa21abqz5d.execute-api.us-east-1.amazonaws.com/prod", true);
           xhttp.send();
           xhttp.addEventListener("readystatechange", processRequest, false);
-  
+
           function processRequest(e) {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
               var response = JSON.parse(xhttp.responseText);
               // var numberString = response.dogPicture;
               var movieTitle = response.videoToDisplay;
-  
+
               showVideoTitle(movieTitle);
-  
+
               if (movieTitle === "play")
                 playVid();
               if (movieTitle === "pause" || movieTitle === "paws")
                 pauseVid();
-  
+
               // if(numberString < 5 && numberString > 0) {
               //   showFullImage(numberString);
               // } else {
@@ -58,33 +58,36 @@
           }
           setTimeout(refresh, 1000);
         }
-  
+
         refresh();
-  
-        function playVid() { 
+
+        function playVid() {
           var vid = document.getElementById("myVideo");
-          vid.play(); 
-        } 
-  
-        function pauseVid() { 
-          var vid = document.getElementById("myVideo"); 
-          vid.pause(); 
-        } 
-      
+          vid.play();
+
+        }
+
+        function pauseVid() {
+          var vid = document.getElementById("myVideo");
+          vid.pause();
+        }
+
       </script>
-      
+
         <div class="player">
-  
+
             <center>
               <button onclick="playVid()" type="button">Play Video</button>
-              <button onclick="pauseVid()" type="button">Pause Video</button><br/> 
-              <video id="myVideo" width="600" height="400">
+              <button onclick="pauseVid()" type="button">Pause Video</button><br/>
+              <video id="myVideo" width="600" height="400" >
                 <source id="kick_boxing_video" src="https://reflect-mirror-videos.s3.amazonaws.com/07252019032507PM-Amber-Kickboxing.mp4" type="video/mp4" />
                 <source id="yoga_video" src="https://reflect-mirror-videos.s3.amazonaws.com/07252019042806PM-Ginny-BalanceYoga.mp4" type="video/mp4" />
               </video>
+
+
+
             </center>
-          
+
         </div>
       </body>
     </head>
-  
