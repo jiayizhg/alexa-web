@@ -27,14 +27,12 @@
       <script>
         function showVideoTitle(title) {
           document.getElementById('displayMovie').textContent = title;
-          console.log(title);
         }
         function refresh() {
           var xhttp = new XMLHttpRequest();
           xhttp.open("GET", "https://qa21abqz5d.execute-api.us-east-1.amazonaws.com/prod", true);
           xhttp.send();
           xhttp.addEventListener("readystatechange", processRequest, false);
-          let videoCommand = "";
 
           function processRequest(e) {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -42,32 +40,22 @@
               // var numberString = response.dogPicture;
               var workoutVideo = response.videoToDisplay;
 
-              if (workoutVideo === "restart" && videoCommand === "restart") {
-                videoCommand = "play";
-              } else {
-                videoCommand = workoutVideo.toLowerCase();
-              }
+              showVideoTitle(workoutVideo);
 
-              showVideoTitle(videoCommand);
-
-              if (videoCommand.includes("kick boxing")) {
+              if (workoutVideo.includes("kick boxing")) {
                 playKickBoxingVid();
-              } else if (videoCommand.includes("balance yoga")) {
-                playKickBoxingVid();
-              } else if (videoCommand.includes("undefined")) {
+              } else if (workoutVideo.includes("balance yoga")) {
+                playYogaVid();
+              } else if (workoutVideo.includes("undefined") || workoutVideo === "play") {
                 playVid();
               }
-              if (videoCommand === "pause" || videoCommand === "paws")
+              if (workoutVideo === "pause" || workoutVideo === "paws") {
                 pauseVid();
-              if (videoCommand === "restart")
+              }
+              if (workoutVideo === "restart") {
                 restartVid();
-
-              // if(numberString < 5 && numberString > 0) {
-              //   showFullImage(numberString);
-              // } else {
-              //   showGridView();
-              //}
-              console.log(videoCommand);
+                console.log("restart the damn video");
+              }
             }
           }
           setTimeout(refresh, 1000);
@@ -78,19 +66,19 @@
         function fastForwardVid() {
           var vid = document.getElementById("myVideo");
           vid.currentTime += 2;
-
         }
 
         function restartVid() {
           var vid = document.getElementById("myVideo");
           vid.currentTime = 0;
-
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
         }
 
         function playVid() {
           var vid = document.getElementById("myVideo");
           vid.play();
-
         }
 
         function pauseVid() {
@@ -101,13 +89,19 @@
         function playYogaVid() {
           var vid = document.getElementById("myVideo");
           vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07252019042806PM-Ginny-BalanceYoga.mp4');
-          vid.play();
+          vid.load();
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
         }
 
         function playKickBoxingVid() {
           var vid = document.getElementById("myVideo");
           vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07252019032507PM-Amber-Kickboxing.mp4');
-          vid.play();
+          vid.load();
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
         }
 
       </script>
@@ -122,8 +116,6 @@
               <button onclick="playVid()" type="button">Play Video</button>
               <button onclick="pauseVid()" type="button">Pause Video</button><br/>
               <video id="myVideo" width="600" height="400" >
-                <source id="kick_boxing_video" src="https://reflect-mirror-videos.s3.amazonaws.com/07252019032507PM-Amber-Kickboxing.mp4" type="video/mp4" />
-                <source id="yoga_video" src="https://reflect-mirror-videos.s3.amazonaws.com/07252019042806PM-Ginny-BalanceYoga.mp4" type="video/mp4" />
               </video>
 
             </center>
