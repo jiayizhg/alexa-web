@@ -41,13 +41,19 @@
               // var numberString = response.dogPicture;
               var workoutVideo = response.videoToDisplay;
 
-              showVideoTitle(movieTitle);
+              showVideoTitle(workoutVideo);
 
-              if (workoutVideo === "play")
+              if (workoutVideo.toLowerCase() === "kick boxing") {
+                playKickBoxingVid();
+              }
+              if (workoutVideo.toLowerCase() === "balance yoga") {
+                playKickBoxingVid();
+              }
+              if (workoutVideo.toLowerCase() === "play")
                 playVid();
-              if (workoutVideo === "pause" || workoutVideo === "paws")
+              if (workoutVideo.toLowerCase() === "pause" || workoutVideo.toLowerCase() === "paws")
                 pauseVid();
-              if (workoutVideo === "restart")
+              if (workoutVideo.toLowerCase() === "restart")
                 restartVid();
 
               // if(numberString < 5 && numberString > 0) {
@@ -55,13 +61,19 @@
               // } else {
               //   showGridView();
               //}
-              console.log(movieTitle);
+              console.log(workoutVideo);
             }
           }
           setTimeout(refresh, 1000);
         }
 
         refresh();
+
+        function fastForwardVid() {
+          var vid = document.getElementById("myVideo");
+          vid.currentTime += 2;
+
+        }
 
         function restartVid() {
           var vid = document.getElementById("myVideo");
@@ -80,11 +92,26 @@
           vid.pause();
         }
 
+        function playYogaVid() {
+          var vid = document.getElementById("myVideo");
+          vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07252019042806PM-Ginny-BalanceYoga.mp4');
+          vid.load();
+        }
+
+        function playKickBoxingVid() {
+          var vid = document.getElementById("myVideo");
+          vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07252019032507PM-Amber-Kickboxing.mp4');
+          vid.load();
+        }
+
       </script>
 
         <div class="player">
 
             <center>
+              <button onclick="playYogaVid()" type="button">Play Yoga Video</button><br/>
+              <button onclick="playKickBoxingVid()" type="button">Play Kick Boxing Video</button><br/>
+              <button onclick="fastForwardVid()" type="button">Fast Forward Video</button>
               <button onclick="restartVid()" type="button">Restart Video</button>
               <button onclick="playVid()" type="button">Play Video</button>
               <button onclick="pauseVid()" type="button">Pause Video</button><br/>
