@@ -34,6 +34,7 @@
           xhttp.open("GET", "https://qa21abqz5d.execute-api.us-east-1.amazonaws.com/prod", true);
           xhttp.send();
           xhttp.addEventListener("readystatechange", processRequest, false);
+          let videoCommand = "";
 
           function processRequest(e) {
             if (xhttp.readyState == 4 && xhttp.status == 200) {
@@ -41,19 +42,25 @@
               // var numberString = response.dogPicture;
               var workoutVideo = response.videoToDisplay;
 
-              showVideoTitle(workoutVideo);
+              if (workoutVideo === "restart" && videoCommand === "restart") {
+                videoCommand = "play";
+              } else {
+                videoCommand = workoutVideo.toLowerCase();
+              }
 
-              if (workoutVideo.toLowerCase() === "kick boxing") {
+              showVideoTitle(videoCommand);
+
+              if (videoCommand === "kick boxing") {
                 playKickBoxingVid();
               }
-              if (workoutVideo.toLowerCase() === "balance yoga") {
+              if (videoCommand === "balance yoga") {
                 playKickBoxingVid();
               }
-              if (workoutVideo.toLowerCase() === "play")
+              if (videoCommand === "play")
                 playVid();
-              if (workoutVideo.toLowerCase() === "pause" || workoutVideo.toLowerCase() === "paws")
+              if (videoCommand === "pause" || videoCommand === "paws")
                 pauseVid();
-              if (workoutVideo.toLowerCase() === "restart")
+              if (videoCommand === "restart")
                 restartVid();
 
               // if(numberString < 5 && numberString > 0) {
@@ -61,7 +68,7 @@
               // } else {
               //   showGridView();
               //}
-              console.log(workoutVideo);
+              console.log(videoCommand);
             }
           }
           setTimeout(refresh, 1000);
