@@ -46,6 +46,8 @@
                 playKickBoxingVid();
               } else if (workoutVideo.includes("balance yoga")) {
                 playYogaVid();
+              } else if (workoutVideo.includes("flow workout")) {
+                playVinyasaFlowiVid();
               } else if (workoutVideo.includes("undefined") || workoutVideo === "play") {
                 playVid();
               }
@@ -98,6 +100,15 @@
         function playKickBoxingVid() {
           var vid = document.getElementById("myVideo");
           vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07252019032507PM-Amber-Kickboxing.mp4');
+          vid.load();
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
+        }
+
+        function playVinyasaFlowiVid() {
+          var vid = document.getElementById("myVideo");
+          vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07162019071348PM-Jenny-15MinVinyasaFlow.mp4');
           vid.load();
           var xhttp = new XMLHttpRequest();
           xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
