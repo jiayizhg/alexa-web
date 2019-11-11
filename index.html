@@ -42,7 +42,7 @@
 
               showVideoTitle(workoutVideo);
 
-              if (workoutVideo.includes("kick boxing")) {
+              if (workoutVideo.includes("kick boxing") || workoutVideo.includes("kickboxing")) {
                 playKickBoxingVid();
               } else if (workoutVideo.includes("balance yoga")) {
                 playYogaVid();
@@ -56,7 +56,6 @@
               }
               if (workoutVideo === "restart") {
                 restartVid();
-                console.log("restart the damn video");
               }
             }
           }
@@ -126,6 +125,7 @@
               <button onclick="restartVid()" type="button">Restart Video</button>
               <button onclick="playVid()" type="button">Play Video</button>
               <button onclick="pauseVid()" type="button">Pause Video</button><br/>
+
               <video id="myVideo" width="600" height="400" >
               </video>
 
