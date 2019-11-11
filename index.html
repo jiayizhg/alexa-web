@@ -42,12 +42,18 @@
 
               showVideoTitle(workoutVideo);
 
-              if (workoutVideo.includes("kick boxing")) {
+              if (workoutVideo.includes("kick boxing") || workoutVideo.includes("kickboxing")) {
                 playKickBoxingVid();
               } else if (workoutVideo.includes("balance yoga")) {
                 playYogaVid();
               } else if (workoutVideo.includes("flow workout")) {
                 playVinyasaFlowiVid();
+              } else if (workoutVideo.includes("meditation")) {
+              playMeditationVid();
+            } else if (workoutVideo.includes("strength training") || workoutVideo.includes("strength with weights")) {
+                playStrengthVid();
+              } else if (workoutVideo.includes("pilates")) {
+              playPilatesVid();
               } else if (workoutVideo.includes("undefined") || workoutVideo === "play") {
                 playVid();
               }
@@ -109,6 +115,33 @@
         function playVinyasaFlowiVid() {
           var vid = document.getElementById("myVideo");
           vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07162019071348PM-Jenny-15MinVinyasaFlow.mp4');
+          vid.load();
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
+        }
+
+        function playMeditationVid() {
+          var vid = document.getElementById("myVideo");
+          vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/08152019055836PM-Christy-10minMeditation5-9-2019.mp4');
+          vid.load();
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
+        }
+
+        function playStrengthVid() {
+          var vid = document.getElementById("myVideo");
+          vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07252019040211PM-Jaime-Strengthwithweights.mp4');
+          vid.load();
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
+        }
+
+        function playPilatesVid() {
+          var vid = document.getElementById("myVideo");
+          vid.setAttribute('src', 'https://reflect-mirror-videos.s3.amazonaws.com/07232019050006PM-Teresa-GreenScreen17%2618Videos.mp4');
           vid.load();
           var xhttp = new XMLHttpRequest();
           xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
