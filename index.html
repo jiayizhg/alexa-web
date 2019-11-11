@@ -57,6 +57,9 @@
         function fastForwardVid() {
           var vid = document.getElementById("myVideo");
           vid.currentTime += 20;
+          var xhttp = new XMLHttpRequest();
+          xhttp.open("GET", "https://drb7dtwfah.execute-api.us-east-1.amazonaws.com/prod", true);
+          xhttp.send();
         }
 
         function restartVid() {
